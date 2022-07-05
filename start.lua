@@ -6799,7 +6799,7 @@ if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ براند ماعندها حساب بالبنك 🤣*","md",true)  
 return false
 end
-if Remsg.chat_id,msg.id == msg.sender_id.user_id then
+if Remsg.sender_id.user_id == msg.sender_id.user_id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهاجم نفسك 🤡*","md",true)  
 return false
 end
@@ -7241,7 +7241,7 @@ if tonumber(mgrmasnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." ماسه ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7281,7 +7281,7 @@ if tonumber(mgrkldnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." قلاده ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7321,7 +7321,7 @@ if tonumber(mgrswrnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سوار","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7361,7 +7361,7 @@ if tonumber(mgrktmnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." خاتم","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7590,7 +7590,7 @@ if tonumber(akrksrnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." قصر ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7630,7 +7630,7 @@ if tonumber(akrfelnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." فيلا ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7670,7 +7670,7 @@ if tonumber(akrmnznum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." منزل","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7899,7 +7899,7 @@ if tonumber(airshbhnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." طائرة شبح ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7939,7 +7939,7 @@ if tonumber(airsfarnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." طائرة سفر ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -7979,7 +7979,7 @@ if tonumber(airkhasnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." طائرة خاصه ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8460,7 +8460,7 @@ if tonumber(carrangnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة فيلار ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8500,7 +8500,7 @@ if tonumber(caraccenum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة اكسنت ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8540,7 +8540,7 @@ if tonumber(carcamrnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة كامري ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8580,7 +8580,7 @@ if tonumber(carhilxnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة هايلكس ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك ??*","md",true)  
 return false
 end
@@ -8620,7 +8620,7 @@ if tonumber(caralntrnum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة النترا ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8660,7 +8660,7 @@ if tonumber(carsonanum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة سوناتا ","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8700,7 +8700,7 @@ if tonumber(carcoronum) < tonumber(coniss) then
 return bot.sendText(msg.chat_id,msg.id, "⇜ ماعندك "..tonumber(coniss).." سيارة كورولا","md",true)
 end
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهدي نفسك 🤡*","md",true)  
 return false
 end
@@ -8895,7 +8895,7 @@ local UserName = text:match('^زواج (.*)$')
 local coniss = coin(UserName)
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = bot.getUser(Remsg.chat_id,msg.id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ زوجتك نفسي 🤣😒*","md",true)  
 return false
 end
@@ -9126,7 +9126,7 @@ end
 if text == 'زوجها' or text == "زوجته" or text == "جوزها" or text == "زوجتو" or text == "زواجه" and msg.reply_to_message_id ~= 0 then
 local Remsg = bot.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = bot.getUser(Remsg.chat_id,msg.id)
-if msg.chat_id,msg.id == Remsg.chat_id,msg.id then
+if msg.sender_id.user_id == Remsg.chat_id,msg.id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ لا تكشف نفسك وتخسر فلوس عالفاضي\n اكتب `زواجي`*","md",true)  
 return false
 end
