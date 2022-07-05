@@ -22440,109 +22440,26 @@ if data and data.luatele and data.luatele == "updateSupergroup" then
 local Get_Chat = bot.getChat('-100'..data.supergroup.id)
 if data.supergroup.status.luatele == "chatMemberStatusBanned" then
 redis:srem(bot_id..":Groups",'-100'..data.supergroup.id)
-bot.sendText(1566031059,0,'*\n- تم طرد البوت من مجموعه جديد \n- اسم المجموعه : '..Get_Chat.title..'\n- ايدي المجموعه :*`-100'..data.supergroup.id..'`\n- تم مسح جميع البيانات المتعلقه بالمجموعه',"md")
-bot.sendText(sudoid,0,'*\n- تم طرد البوت من مجموعه جديد \n- اسم المجموعه : '..Get_Chat.title..'\n- ايدي المجموعه :*`-100'..data.supergroup.id..'`\n- تم مسح جميع البيانات المتعلقه بالمجموعه',"md")
+local keys = redis:keys(bot_id..'*'..'-100'..data.supergroup.id..'*')
+redis:del(bot_id..":-100"..data.supergroup.id..":Status:Creator")
+redis:del(bot_id..":-100"..data.supergroup.id..":Status:BasicConstructor")
+redis:del(bot_id..":-100"..data.supergroup.id..":Status:Constructor")
+redis:del(bot_id..":-100"..data.supergroup.id..":Status:Owner")
+redis:del(bot_id..":-100"..data.supergroup.id..":Status:Administrator")
+redis:del(bot_id..":-100"..data.supergroup.id..":Status:Vips")
+redis:del(bot_id.."List:Command:"..'-100'..data.supergroup.id)
+for i = 1, #keys do 
+redis:del(keys[i])
 end
-end
-end
-------print(serpent.block(data, {comment=false}))
-
-if data.luatele == "updateChatMember" then
-if data.new_chat_member.member_id.user_id == tonumber(bot_id) then
-if data.new_chat_member.status.can_delete_messages == true then
-local chat_id = data.chat_id
-local who_promot = data.actor_user_id
---code start
-if redis:sismember(bot_id..'ban:online',chat_id) then ---check if ban
-bot.sendText(chat_id,0,"\n*⇜ هذه المجموعه محظور سوف اغادر جاوو*","md",true)  
-bot.leaveChat(chat_id)
-end ---end check if ban
-local Info_Chats = bot.getSupergroupFullInfo(chat_id) ---check if count is true
-if tonumber(Info_Chats.member_count) < tonumber((redis:get(bot_id..'Num:Add:Bot') or 0)) and not devB(who_promot) then
-bot.sendText(chat_id,0,'- عدد الاعضاء قليل لا يمكن تفعيل المجموعه\n يجب ان يكون اكثر من '..redis:get(bot_id..'Num:Add:Bot'),"md",true)
-bot.leaveChat(chat_id)
-end---end check if count is true
-if not redis:sismember(bot_id..":Groups", chat_id) then ---done active
-local Get_Chat = bot.getChat(chat_id)
-local UserInfo = bot.getUser(who_promot)
+Get_Chat = bot.getChat('-100'..data.supergroup.id)
+Info_Chats = bot.getSupergroupFullInfo('-100'..data.supergroup.id)
 local reply_markup = bot.replyMarkup{
 type = 'inline',
 data = {
-{
-{text = Get_Chat.title, url = Info_Chats.invite_link.invite_link}, 
-},
-{
-{text = 'مغادرة المجموعه', data = '/leftgroup@'..chat_id}, 
-},
+{{text = Get_Chat.title, url = Info_Chats.invite_link.invite_link}},
 }
 }
-bot.sendText(sudoid,0,'*\n- تم تفعيل مجموعه جديد \n- بواسطه : *['..UserInfo.first_name..'](tg://user?id='..who_promot..')*\n- معلومات المجموعه :\n- عدد الاعضاء ↤ '..Info_Chats.member_count..'\n- عدد الادمنيه ↤ '..Info_Chats.administrator_count..'\n- عدد المطرودين ↤ '..Info_Chats.banned_count..'\n- عدد المقيدين ↤ '..Info_Chats.restricted_count..'\n- الرابط\n : '..Info_Chats.invite_link.invite_link..'*',"md", true, false, false, false, reply_markup)
-redis:sadd(bot_id..":Groups", chat_id)
-redis:set(bot_id..'tagallgroup'..chat_id,'open') 
-redis:set(bot_id.."Status:Link"..chat_id,true) 
-redis:set(bot_id.."Status:Games"..chat_id,true) 
-redis:set(bot_id.."Status:Reply"..chat_id,true) 
-redis:set(bot_id.."calculate"..chat_id,true) 
-redis:set(bot_id.."name:k"..chat_id,true) 
-redis:set(bot_id.."brjj"..chat_id,true) 
-redis:set(bot_id.."myzhrfa"..chat_id,true) 
-redis:set(bot_id.."idnotmembio"..chat_id,true) 
-redis:set(bot_id.."Abs:kol:Abs"..chat_id,true) 
-redis:set(bot_id.."Abs:Addme:Abs"..chat_id,true) 
-redis:set(bot_id.."Abs:Nzlne:Abs"..chat_id,true) 
-redis:set(bot_id.."taggg"..chat_id,true) 
-redis:set(bot_id.."Redis:setRt"..chat_id,true) 
-redis:set(bot_id.."youutube"..chat_id,true) 
-redis:set(bot_id.."thnaee"..chat_id,true) 
-redis:set(bot_id.."shakse"..chat_id,true) 
-redis:set(bot_id.."indar"..chat_id,true) 
-redis:set(bot_id.."dartba"..chat_id,true) 
-redis:set(bot_id.."shapeh"..chat_id,true) 
-redis:set(bot_id.."anamen"..chat_id,true) 
-redis:set(bot_id.."trfeh"..chat_id,true) 
-redis:set(bot_id.."aftare"..chat_id,true) 
-redis:set(bot_id.."ttzog"..chat_id,true) 
-redis:set(bot_id.."zogne"..chat_id,true) 
-redis:set(bot_id.."nsab"..chat_id,true) 
-redis:set(bot_id.."AlThther:Chat"..chat_id,"true")
-redis:set(bot_id.."replayallbot"..chat_id,true)
-redis:set(bot_id.."Status:Welcome"..chat_id,true) 
-redis:set(bot_id.."AlThther:Chat"..chat_id,"true")
-redis:set(bot_id..'lockalllll'..chat_id,'on') 
-redis:set(bot_id.."Status:IdPhoto"..chat_id,true) 
-redis:del(bot_id.."spammkick"..chat_id)
-redis:set(bot_id.."Lock:edit"..chat_id,true) 
-redis:sadd(bot_id.."ChekBotAdd",chat_id)
-redis:set(bot_id.."Status:Games"..chat_id,true) 
-redis:set(bot_id.."Status:Id"..chat_id,true)
-redis:set(bot_id.."Status:Reply"..chat_id,true)
-redis:set(bot_id.."market"..chat_id,true) 
-redis:set(bot_id.."Status:ReplySudo"..chat_id,true)
-redis:set(bot_id.."Status:BanId"..chat_id,true)
-redis:set(bot_id.."Status:SetId"..chat_id,true) 
-local Info_Members = bot.getSupergroupMembers(chat_id, "Administrators", "*", 0, 200)
-local List_Members = Info_Members.members
-for k, v in pairs(List_Members) do
-if Info_Members.members[k].bot_info == nil then
-if Info_Members.members[k].status.luatele == "chatMemberStatusCreator" then
-redis:sadd(bot_id..":"..chat_id..":Status:Creator",v.member_id.user_id) 
-else
-redis:sadd(bot_id..":"..chat_id..":Status:Administrator",v.member_id.user_id) 
-end
-end
-end
-local txt = '⇜ من 「 ['..UserInfo.first_name..'](tg://user?id='..who_promot..')⁪⁬‌‌‌‌ 」\n⇜ تم تفعيل المجموعه ['..Get_Chat.title..']('..Info_Chats.invite_link.invite_link..') تلقائياً\n-'
-local reply_markup = bot.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = 'BRAND', url = 't.me/CXRCX'}, 
-},
-}
-}
-return bot.sendText(chat_id, 0 , txt, 'md', false, false, false, false, reply_markup)
-end ---end done active
---code end
+return bot.sendText(sudoid,0,'◈ ╎ تم طرد البوت من مجموعه جديده\n◈ ╎ معلومات المجموعه :\n◈ ╎ الايدي : ( -100'..data.supergroup.id..' )\n*◈ ╎ عدد الاعضاء : '..Info_Chats.member_count..'\n◈ ╎ عدد الادمنيه : '..Info_Chats.administrator_count..'\n◈ ╎ عدد المطرودين : '..Info_Chats.banned_count..'\n◈ ╎ عدد المقيدين : '..Info_Chats.restricted_count..'\n◈ ╎ الرابط\n : '..Info_Chats.invite_link.invite_link..'*',"md",true, false, false, false, reply_markup)
 end
 end
 end
@@ -22575,29 +22492,6 @@ if NewCmd then
 data.message.content.text.text = (NewCmd or data.message.content.text.text)
 end
 end
----------‐-------------
-if data.message.sender.luatele ~= "messageSenderChat" then
-if tonumber(data.message.sender.user_id) ~= tonumber(bot_id) then  
-if data.message.content.text and data.message.content.text.text:match("^(.*)$") then
-if redis:get(bot_id..":"..data.message.chat_id..":"..data.message.sender.user_id..":Command:del") == "true" then
-redis:del(bot_id..":"..data.message.chat_id..":"..data.message.sender.user_id..":Command:del")
-if redis:get(bot_id..":"..data.message.chat_id..":Command:"..data.message.content.text.text) then
-redis:del(bot_id..":"..data.message.chat_id..":Command:"..data.message.content.text.text)
-redis:srem(bot_id.."List:Command:"..data.message.chat_id,data.message.content.text.text)
-t = "- تم مسح الامر "
-else
-t = " - عذراً الامر  ( "..data.message.content.text.text.." ) غير موجود "
-end
-bot.sendText(data.message.chat_id,data.message.id,"*"..t.."*","md",true)  
-end
-end
-if data.message.content.text then
-local NewCmdd = redis:get(bot_id..":Commandd:"..data.message.content.text.text)
-if NewCmdd then
-data.message.content.text.text = (NewCmdd or data.message.content.text.text)
-end
-end
--------------------------------
 if data.message.content.text then
 td = data.message.content.text.text
 if redis:get(bot_id..":TheCh") then
