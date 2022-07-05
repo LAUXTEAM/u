@@ -22546,25 +22546,25 @@ end ---end done active
 end
 end
 end
-
+print(serpent.block(data, {comment=false}))   
 if data and data.luatele and data.luatele == "updateNewMessage" then
-if data.message.sender_id.luatele == "messageSenderChat" then
+if data.message.sender.luatele == "messageSenderChat" then
 if redis:get(bot_id..":"..data.message.chat_id..":settings:messageSenderChat") == "del" then
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 return false
 end
 end
-if data.message.sender_id.luatele ~= "messageSenderChat" then
-if tonumber(data.message.sender_id.user_id) ~= tonumber(bot_id) then  
+if data.message.sender.luatele ~= "messageSenderChat" then
+if tonumber(data.message.sender.user_id) ~= tonumber(bot_id) then  
 if data.message.content.text and data.message.content.text.text:match("^(.*)$") then
-if redis:get(bot_id..":"..data.message.chat_id..":"..data.message.sender_id.user_id..":Command:del") == "true" then
-redis:del(bot_id..":"..data.message.chat_id..":"..data.message.sender_id.user_id..":Command:del")
+if redis:get(bot_id..":"..data.message.chat_id..":"..data.message.sender.user_id..":Command:del") == "true" then
+redis:del(bot_id..":"..data.message.chat_id..":"..data.message.sender.user_id..":Command:del")
 if redis:get(bot_id..":"..data.message.chat_id..":Command:"..data.message.content.text.text) then
 redis:del(bot_id..":"..data.message.chat_id..":Command:"..data.message.content.text.text)
 redis:srem(bot_id.."List:Command:"..data.message.chat_id,data.message.content.text.text)
-t = "- تم مسح الامر "
+t = "◈ ╎ تم حذف الامر بنجاح"
 else
-t = " - عذراً الامر  ( "..data.message.content.text.text.." ) غير موجود "
+t = " ◈ ╎ عذراً الامر  ( "..data.message.content.text.text.." ) غير موجود "
 end
 bot.sendText(data.message.chat_id,data.message.id,"*"..t.."*","md",true)  
 end
