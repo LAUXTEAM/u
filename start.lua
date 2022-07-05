@@ -6239,7 +6239,7 @@ if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ براند ماعندها حساب بالبنك 🤣*","md",true)
 return false
 end
-local hrameid = redis:get(bot_id.."hrameid"..msg.chat_id..msg.chat_id,msg.id)
+local hrameid = redis:get(bot_id.."hrameid"..msg.chat_id..msg.sender_id.user_id)
 shkse = redis:get(bot_id.."shkse"..msg.chat_id,msg.id)
 if shkse == "شريرة" then
 return bot.sendText(msg.chat_id,msg.id, "⇜ شخصيتك شريرة ماتستطيع تطلب الشرطة","md",true)
