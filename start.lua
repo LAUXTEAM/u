@@ -3901,7 +3901,7 @@ else
 text = nil
 end
 ----------------------------------------------------------------------------------------------------
-if devB(msg.sender_id.user_id) then
+if devB(msg.sender.user_id) then
 if redis:get(bot_id..":set:"..msg.chat_id..":send") then
 TrS = redis:get(bot_id..":set:"..msg.chat_id..":send")
 list = redis:smembers(bot_id..":Groups")   
@@ -3909,14 +3909,14 @@ lis = redis:smembers(bot_id..":user_id")
 if msg.forward_info or text or msg.content.video_note or msg.content.document or msg.content.audio or msg.content.video or msg.content.voice_note or msg.content.sticker or msg.content.animation or msg.content.photo then 
 redis:del(bot_id..":set:"..msg.chat_id..":send") 
 if TrS == "Fall" then
-bot.sendText(msg.chat_id,msg.id,"*- يتم توجيه الرساله الى ( "..#lis.." عضو ) و ( "..#list.." مجموعه ) *","md",true)      
+bot.sendText(msg.chat_id,msg.id,"*◈ ╎ يتم توجيه الرساله الى ( "..#lis.." عضو ) و ( "..#list.." مجموعه ) *","md",true)      
 for k,v in pairs(list) do
 local FedMsg = bot.forwardMessages(v, msg.chat_id, msg.id,0,0,true,false,false)
 if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) مجموعه جار الاذاعه للاعضاء *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) مجموعه جار الاذاعه للاعضاء *","md",true)
 redis:del(bot_id..":count:true") 
 for k,g in pairs(lis) do  
 local FedMsg = bot.forwardMessages(g, msg.chat_id, msg.id,0,0,true,false,false)
@@ -3924,7 +3924,7 @@ if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
 redis:del(bot_id..":count:true") 
 elseif TrS == "Fgr" then
 bot.sendText(msg.chat_id,msg.id,"*- يتم توجيه الرساله الى ( "..#list.." مجموعه ) *","md",true)      
@@ -3934,27 +3934,27 @@ if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) مجموعه *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) مجموعه *","md",true)
 redis:del(bot_id..":count:true") 
 elseif TrS == "Fme" then
-bot.sendText(msg.chat_id,msg.id,"*- يتم توجيه الرساله الى ( "..#lis.." عضو ) *","md",true)      
+bot.sendText(msg.chat_id,msg.id,"*◈ ╎ يتم توجيه الرساله الى ( "..#lis.." عضو ) *","md",true)      
 for k,v in pairs(lis) do
 local FedMsg = bot.forwardMessages(v, msg.chat_id, msg.id,0,0,true,false,false)
 if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
 redis:del(bot_id..":count:true") 
 elseif TrS == "Tall" then
-bot.sendText(msg.chat_id,msg.id,"*- يتم ارسال الرساله الى ( "..#lis.." عضو ) و ( "..#list.." مجموعه ) *","md",true)      
+bot.sendText(msg.chat_id,msg.id,"*◈ ╎ يتم ارسال الرساله الى ( "..#lis.." عضو ) و ( "..#list.." مجموعه ) *","md",true)      
 for k,v in pairs(list) do
 local FedMsg = bot.forwardMessages(v, msg.chat_id, msg.id,0,0,true,true,false)
 if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) مجموعه جار الاذاعه للاعضاء *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) مجموعه جار الاذاعه للاعضاء *","md",true)
 redis:del(bot_id..":count:true") 
 for k,v in pairs(lis) do  
 local FedMsg = bot.forwardMessages(v, msg.chat_id, msg.id,0,0,true,true,false)
@@ -3962,292 +3962,34 @@ if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
 redis:del(bot_id..":count:true") 
 elseif TrS == "Tgr" then
-bot.sendText(msg.chat_id,msg.id,"*- يتم ارسال الرساله الى ( "..#list.." مجموعه ) *","md",true)      
+bot.sendText(msg.chat_id,msg.id,"*◈ ╎ يتم ارسال الرساله الى ( "..#list.." مجموعه ) *","md",true)      
 for k,v in pairs(list) do
 local FedMsg = bot.forwardMessages(v, msg.chat_id, msg.id,0,0,true,true,false)
 if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) مجموعه *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) مجموعه *","md",true)
 redis:del(bot_id..":count:true") 
 elseif TrS == "Tme" then
-bot.sendText(msg.chat_id,msg.id,"*- يتم ارسال الرساله الى ( "..#lis.." عضو ) *","md",true)      
+bot.sendText(msg.chat_id,msg.id,"*◈ ╎ يتم ارسال الرساله الى ( "..#lis.." عضو ) *","md",true)      
 for k,v in pairs(lis) do
 local FedMsg = bot.forwardMessages(v, msg.chat_id, msg.id,0,0,true,true,false)
 if FedMsg then
 redis:incr(bot_id..":count:true") 
 end
 end  
-bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه الى ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
+bot.sendText(msg.chat_id,msg.id,"*تمت الاذاعه ل ( "..redis:get(bot_id..":count:true").." ) عضو *","md",true)
 redis:del(bot_id..":count:true") 
 end 
 return false
 end
 end
 end
-if redis:get(bot_id.."Broadcasting:Groups:Pin"..msg.chat_id.."all") then 
-local list = redis:smembers(bot_id..":Groups")
-if msg.content.video_note then
-for k,v in pairs(list) do 
-bot.sendVideoNote(v, 0, msg.content.video_note.video.remote.id)
-redis:set(bot_id.."PinMsegees:"..v,msg.content.video_note.video.remote.id)
-end
-elseif msg.content.photo then
-if msg.content.photo.sizes[1].photo.remote.id then
-idPhoto = msg.content.photo.sizes[1].photo.remote.id
-elseif msg.content.photo.sizes[2].photo.remote.id then
-idPhoto = msg.content.photo.sizes[2].photo.remote.id
-elseif msg.content.photo.sizes[3].photo.remote.id then
-idPhoto = msg.content.photo.sizes[3].photo.remote.id
-end
-for k,v in pairs(list) do 
-bot.sendPhoto(v, 0, idPhoto,'')
-redis:set(bot_id.."PinMsegees:"..v,idPhoto)
-end
-elseif msg.content.sticker then 
-for k,v in pairs(list) do 
-bot.sendSticker(v, 0, msg.content.sticker.sticker.remote.id)
-redis:set(bot_id.."PinMsegees:"..v,msg.content.sticker.sticker.remote.id)
-end
-elseif msg.content.voice_note then 
-for k,v in pairs(list) do 
-bot.sendVoiceNote(v, 0, msg.content.voice_note.voice.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..v,msg.content.voice_note.voice.remote.id)
-end
-elseif msg.content.video then 
-for k,v in pairs(list) do 
-bot.sendVideo(v, 0, msg.content.video.video.remote.id, '', "md")
-redis:set(bot_id.."PinMsegees:"..v,msg.content.video.video.remote.id)
-end
-elseif msg.content.animation then 
-for k,v in pairs(list) do 
-bot.sendAnimation(v,0, msg.content.animation.animation.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..v,msg.content.animation.animation.remote.id)
-end
-elseif msg.content.document then
-for k,v in pairs(list) do 
-bot.sendDocument(v, 0, msg.content.document.document.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..v,msg.content.document.document.remote.id)
-end
-elseif msg.content.audio then
-for k,v in pairs(list) do 
-bot.sendAudio(v, 0, msg.content.audio.audio.remote.id, '', "md") 
-redis:set(bot_id.."PinMsegees:"..v,msg.content.audio.audio.remote.id)
-end
-elseif text then
-for k,v in pairs(list) do 
-bot.sendText(v,0,text,"md",true)
-redis:set(bot_id.."PinMsegees:"..v,text)
-end
-end
-redis:del(bot_id.."Broadcasting:Groups:Pin"..chat_id.."all") 
-bot.sendText(msg.chat_id,msg.id,"- تمت الاذاعه بالتثبيت الى *( "..#list.." )* مجموعه ","md",true)      
-return false
-end
 
-if redis:get(bot_id.."Broadcasting:Groups:Pin"..msg.chat_id.."allm") then 
-local list = redis:smembers(bot_id..":user_id")
-if msg.content.video_note then
-for k,v in pairs(list) do 
-bot.sendVideoNote(v, 0, msg.content.video_note.video.remote.id)
-redis:set(bot_id.."PinMsegees:"..v,msg.content.video_note.video.remote.id)
-end
-elseif msg.content.photo then
-if msg.content.photo.sizes[1].photo.remote.id then
-idPhoto = msg.content.photo.sizes[1].photo.remote.id
-elseif msg.content.photo.sizes[2].photo.remote.id then
-idPhoto = msg.content.photo.sizes[2].photo.remote.id
-elseif msg.content.photo.sizes[3].photo.remote.id then
-idPhoto = msg.content.photo.sizes[3].photo.remote.id
-end
-for k,v in pairs(list) do 
-bot.sendPhoto(v, 0, idPhoto,'')
-redis:set(bot_id.."PinMsegees:"..v,idPhoto)
-end
-elseif msg.content.sticker then 
-for k,v in pairs(list) do 
-bot.sendSticker(v, 0, msg.content.sticker.sticker.remote.id)
-redis:set(bot_id.."PinMsegees:"..v,msg.content.sticker.sticker.remote.id)
-end
-elseif msg.content.voice_note then 
-for k,v in pairs(list) do 
-bot.sendVoiceNote(v, 0, msg.content.voice_note.voice.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..v,msg.content.voice_note.voice.remote.id)
-end
-elseif msg.content.video then 
-for k,v in pairs(list) do 
-bot.sendVideo(v, 0, msg.content.video.video.remote.id, '', "md")
-redis:set(bot_id.."PinMsegees:"..v,msg.content.video.video.remote.id)
-end
-elseif msg.content.animation then 
-for k,v in pairs(list) do 
-bot.sendAnimation(v,0, msg.content.animation.animation.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..v,msg.content.animation.animation.remote.id)
-end
-elseif msg.content.document then
-for k,v in pairs(list) do 
-bot.sendDocument(v, 0, msg.content.document.document.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..v,msg.content.document.document.remote.id)
-end
-elseif msg.content.audio then
-for k,v in pairs(list) do 
-bot.sendAudio(v, 0, msg.content.audio.audio.remote.id, '', "md") 
-redis:set(bot_id.."PinMsegees:"..v,msg.content.audio.audio.remote.id)
-end
-elseif text then
-for k,v in pairs(list) do 
-bot.sendText(v,0,text,"md",true)
-redis:set(bot_id.."PinMsegees:"..v,text)
-end
-end
-redis:del(bot_id.."Broadcasting:Groups:Pin"..chat_id.."allm") 
-bot.sendText(msg.chat_id,msg.id,"- تمت الاذاعه بالتثبيت الى *( "..#list.." )* عضو ","md",true)      
-return false
-end
-
-if redis:get(bot_id.."Broad:Group:Pin" .. msg.chat_id .. ":" .. msg.sender_id.user_id) then 
-if text == "الغاء" or text == 'الغاء الامر' then   
-redis:del(bot_id.."Broad:Group:Pin" .. msg.chat_id .. ":" .. msg.sender_id.user_id) 
-redis:del(bot_id.."dedede") 
-return bot.sendText(msg.chat_id,msg.id, "\n- تم الغاء الاذاعه ","md",true)  
-end 
-local list = redis:get(bot_id.."dedede",dedede) 
-if msg.content.video_note then
-bot.sendVideoNote(list, 0, msg.content.video_note.video.remote.id)
-redis:set(bot_id.."PinMsegees:"..list,msg.content.video_note.video.remote.id)
-elseif msg.content.photo then
-if msg.content.photo.sizes[1].photo.remote.id then
-idPhoto = msg.content.photo.sizes[1].photo.remote.id
-elseif msg.content.photo.sizes[2].photo.remote.id then
-idPhoto = msg.content.photo.sizes[2].photo.remote.id
-elseif msg.content.photo.sizes[3].photo.remote.id then
-idPhoto = msg.content.photo.sizes[3].photo.remote.id
-end
-bot.sendPhoto(list, 0, idPhoto,'')
-redis:set(bot_id.."PinMsegees:"..list,idPhoto)
-elseif msg.content.sticker then 
-bot.sendSticker(list, 0, msg.content.sticker.sticker.remote.id)
-redis:set(bot_id.."PinMsegees:"..list,msg.content.sticker.sticker.remote.id)
-elseif msg.content.voice_note then 
-bot.sendVoiceNote(list, 0, msg.content.voice_note.voice.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..list,msg.content.voice_note.voice.remote.id)
-elseif msg.content.video then 
-bot.sendVideo(list, 0, msg.content.video.video.remote.id, '', "md")
-redis:set(bot_id.."PinMsegees:"..list,msg.content.video.video.remote.id)
-elseif msg.content.animation then 
-bot.sendAnimation(list,0, msg.content.animation.animation.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..list,msg.content.animation.animation.remote.id)
-elseif msg.content.document then
-bot.sendDocument(list, 0, msg.content.document.document.remote.id, '', 'md')
-redis:set(bot_id.."PinMsegees:"..list,msg.content.document.document.remote.id)
-elseif msg.content.audio then
-bot.sendAudio(list, 0, msg.content.audio.audio.remote.id, '', "md") 
-redis:set(bot_id.."PinMsegees:"..list,msg.content.audio.audio.remote.id)
-elseif text then
-bot.sendText(list,0,text,"md",true)
-redis:set(bot_id.."PinMsegees:"..list,text)
-end
-bot.sendText(msg.chat_id,msg.id,"- تم اذاعة الرسالة بالتثبيت الى المجموعه * "..list.." *  ","md",true)      
-redis:del(bot_id.."Broad:Group:Pin" .. msg.chat_id .. ":" .. msg.sender_id.user_id) 
-redis:del(bot_id.."dedede") 
-return false
-end
-
-if redis:get(bot_id.."Broad:Group:nor" .. msg.chat_id .. ":" .. msg.sender_id.user_id) then 
-if text == "الغاء" or text == 'الغاء الامر' then   
-redis:del(bot_id.."Broad:Group:nor" .. msg.chat_id .. ":" .. msg.sender_id.user_id) 
-redis:del(bot_id.."dededee") 
-return bot.sendText(msg.chat_id,msg.id, "\n- تم الغاء الاذاعه ","md",true)  
-end 
-local list = redis:get(bot_id.."dededee",dededee) 
-if msg.content.video_note then
-bot.sendVideoNote(list, 0, msg.content.video_note.video.remote.id)
-elseif msg.content.photo then
-if msg.content.photo.sizes[1].photo.remote.id then
-idPhoto = msg.content.photo.sizes[1].photo.remote.id
-elseif msg.content.photo.sizes[2].photo.remote.id then
-idPhoto = msg.content.photo.sizes[2].photo.remote.id
-elseif msg.content.photo.sizes[3].photo.remote.id then
-idPhoto = msg.content.photo.sizes[3].photo.remote.id
-end
-bot.sendPhoto(list, 0, idPhoto,'')
-elseif msg.content.sticker then 
-bot.sendSticker(list, 0, msg.content.sticker.sticker.remote.id)
-elseif msg.content.voice_note then 
-bot.sendVoiceNote(list, 0, msg.content.voice_note.voice.remote.id, '', 'md')
-elseif msg.content.video then 
-bot.sendVideo(list, 0, msg.content.video.video.remote.id, '', "md")
-elseif msg.content.animation then 
-bot.sendAnimation(list,0, msg.content.animation.animation.remote.id, '', 'md')
-elseif msg.content.document then
-bot.sendDocument(list, 0, msg.content.document.document.remote.id, '', 'md')
-elseif msg.content.audio then
-bot.sendAudio(list, 0, msg.content.audio.audio.remote.id, '', "md") 
-elseif text then
-bot.sendText(list,0,text,"md",true)
-end
-bot.sendText(msg.chat_id,msg.id,"- تم اذاعة الرسالة الى المجموعه * "..list.." *  ","md",true)      
-redis:del(bot_id.."Broad:Group:nor" .. msg.chat_id .. ":" .. msg.sender_id.user_id) 
-redis:del(bot_id.."dededee") 
-return false
-end
-
-if redis:get(bot_id.."Broad:Group:off" .. msg.chat_id .. ":" .. msg.sender_id.user_id) then 
-if text == "الغاء" or text == 'الغاء الامر' then   
-redis:del(bot_id.."Broad:Group:off" .. msg.chat_id .. ":" .. msg.sender_id.user_id) 
-redis:del(bot_id.."dededeq") 
-return bot.sendText(msg.chat_id,msg.id, "\n- تم الالغاء ","md",true)  
-end 
-local list = redis:get(bot_id.."dededeq",dededeq)
-if msg.content.video_note then
-bot.sendVideoNote(list, 0, msg.content.video_note.video.remote.id)
-elseif msg.content.photo then
-if msg.content.photo.sizes[1].photo.remote.id then
-idPhoto = msg.content.photo.sizes[1].photo.remote.id
-elseif msg.content.photo.sizes[2].photo.remote.id then
-idPhoto = msg.content.photo.sizes[2].photo.remote.id
-elseif msg.content.photo.sizes[3].photo.remote.id then
-idPhoto = msg.content.photo.sizes[3].photo.remote.id
-end
-bot.sendPhoto(list, 0, idPhoto,'')
-elseif msg.content.sticker then 
-bot.sendSticker(list, 0, msg.content.sticker.sticker.remote.id)
-elseif msg.content.voice_note then 
-bot.sendVoiceNote(list, 0, msg.content.voice_note.voice.remote.id, '', 'md')
-elseif msg.content.video then 
-bot.sendVideo(list, 0, msg.content.video.video.remote.id, '', "md")
-elseif msg.content.animation then 
-bot.sendAnimation(list,0, msg.content.animation.animation.remote.id, '', 'md')
-elseif msg.content.document then
-bot.sendDocument(list, 0, msg.content.document.document.remote.id, '', 'md')
-elseif msg.content.audio then
-bot.sendAudio(list, 0, msg.content.audio.audio.remote.id, '', "md") 
-elseif text then
-bot.sendText(list,0,text,"md",true)
-end
---bot.sendText(list,0,"- تم تعطيل المجموعه بأمر من المطور  \n⇠ سوف اغادر جاوو ... ✘","md",true)
-redis:srem(bot_id..":Groups",list)
-local keys = redis:keys(bot_id..'*'..list..'*')
-redis:del(bot_id..":"..list..":Status:Creator")
-redis:del(bot_id..":"..list..":Status:BasicConstructor")
-redis:del(bot_id..":"..list..":Status:Constructor")
-redis:del(bot_id..":"..list..":Status:Owner")
-redis:del(bot_id..":"..list..":Status:Administrator")
-redis:del(bot_id..":"..list..":Status:Vips")
-redis:del(bot_id.."List:Command:"..list)
-for i = 1, #keys do 
-redis:del(bot_id..keys[i])
-end
-bot.leaveChat(list)
-bot.sendText(msg.chat_id,msg.id,"- تم تعطيل المجموعه * "..list.." *  ","md",true)      
-redis:del(bot_id.."Broad:Group:off" .. msg.chat_id .. ":" .. msg.sender_id.user_id) 
-redis:del(bot_id.."dededeq") 
-return false
-end
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 if bot.getChatId(msg.chat_id).type == "basicgroup" then
