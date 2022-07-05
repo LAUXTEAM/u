@@ -22523,23 +22523,23 @@ bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 elseif GetInfoBot(data.message).BanUser == false then
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 end
-end 
-if redis:sismember(bot_id..":bot:silent", data.message.sender_id.user_id) then    
+end  
+if redis:sismember(bot_id..":bot:silent", data.message.sender.user_id) then    
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 end  
-if redis:sismember(bot_id..":"..data.message.chat_id..":silent", data.message.sender_id.user_id) then    
+if redis:sismember(bot_id..":"..data.message.chat_id..":silent", data.message.sender.user_id) then    
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})  
 end
-if redis:sismember(bot_id..":"..data.message.chat_id..":Ban", data.message.sender_id.user_id) then    
+if redis:sismember(bot_id..":"..data.message.chat_id..":Ban", data.message.sender.user_id) then    
 if GetInfoBot(data.message).BanUser then
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 elseif GetInfoBot(data.message).BanUser == false then
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 end
 end 
-if redis:sismember(bot_id..":"..data.message.chat_id..":restrict", data.message.sender_id.user_id) then    
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+if redis:sismember(bot_id..":"..data.message.chat_id..":restrict", data.message.sender.user_id) then    
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
 end  
 if not Administrator(msg) then
 if data.message.content.text then
@@ -22561,124 +22561,89 @@ ut = "ممنوعه"
 end
 if hash then    
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
-bot.sendText(data.message.chat_id,data.message.id,Reply_Status(data.message.sender_id.user_id,"*- "..tu.." "..ut.." من المجموعه*").yu,"md",true)  
+bot.sendText(data.message.chat_id,data.message.id,Reply_Status(data.message.sender.user_id,"*◈ ╎ "..tu.." "..ut.." من المجموعه*").yu,"md",true)  
 end
 end
 if data.message and data.message.content then
-if data.message.content.luatele == "messageSticker" or data.message.content.luatele == "messageUnsupported" or data.message.content.luatele == "messageContact" or data.message.content.luatele == "messageVideoNote" or data.message.content.luatele == "messageDocument" or data.message.content.luatele == "messageVideo" or data.message.content.luatele == "messageAnimation" or data.message.content.luatele == "messagePhoto" then
+if data.message.content.luatele == "messageUnsupported" or data.message.content.luatele == "messageSticker" or data.message.content.luatele == "messageContact" or data.message.content.luatele == "messageVideoNote" or data.message.content.luatele == "messageDocument" or data.message.content.luatele == "messageVideo" or data.message.content.luatele == "messageAnimation" or data.message.content.luatele == "messagePhoto" then
 redis:sadd(bot_id..":"..data.message.chat_id..":mediaAude:ids",data.message.id)  
 end
 end
 Run(data.message,data)
 if data.message.content.text then
-if data.message.content.text and not redis:sismember(bot_id..'Spam:Group'..data.message.sender_id.user_id,data.message.content.text.text) then
-redis:del(bot_id..'Spam:Group'..data.message.sender_id.user_id) 
+if data.message.content.text and not redis:sismember(bot_id..'Spam:Group'..data.message.sender.user_id,data.message.content.text.text) then
+redis:del(bot_id..'Spam:Group'..data.message.sender.user_id) 
 end
 end
 if data.message.content.luatele == "messageChatJoinByLink" then
 if redis:get(bot_id..":"..data.message.chat_id..":settings:JoinByLink")== "del" then
-redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender_id.user_id) 
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender.user_id) 
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 elseif redis:get(bot_id..":"..data.message.chat_id..":settings:JoinByLink")== "ked" then
-redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender_id.user_id) 
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender.user_id) 
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 elseif redis:get(bot_id..":"..data.message.chat_id..":settings:JoinByLink") == "ktm" then
-redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender_id.user_id) 
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender.user_id) 
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 elseif redis:get(bot_id..":"..data.message.chat_id..":settings:JoinByLink")== "kick" then
-redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender_id.user_id) 
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender.user_id) 
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 end
 end
 if data.message.content.luatele == "messageChatDeleteMember" or data.message.content.luatele == "messageChatAddMembers" or data.message.content.luatele == "messagePinMessage" or data.message.content.luatele == "messageChatChangeTitle" or data.message.content.luatele == "messageChatJoinByLink" then
 if redis:get(bot_id..":"..data.message.chat_id..":settings:Tagservr")== "del" then
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 elseif redis:get(bot_id..":"..data.message.chat_id..":settings:Tagservr")== "ked" then
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 elseif redis:get(bot_id..":"..data.message.chat_id..":settings:Tagservr") == "ktm" then
-redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender_id.user_id) 
+redis:sadd(bot_id..":"..data.message.chat_id..":settings:mute",data.message.sender.user_id) 
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 elseif redis:get(bot_id..":"..data.message.chat_id..":settings:Tagservr")== "kick" then
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 end
 end 
 end
-
-if data.message.content.luatele == "messageChatJoinByLink" and redis:get(bot_id..'Status:joinet'..data.message.chat_id) == 'true' then
-    local reply_markup = bot.replyMarkup{
-    type = 'inline',
-    data = {
-    {
-    {text = '- انا لست بوت', data = data.message.sender_id.user_id..'/UnKed'},
-    },
-    }
-    } 
-    bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
-    return bot.sendText(data.message.chat_id, data.message.id, '- عليك اختيار انا لست بوت لتخطي نظام التحقق', 'md',false, false, false, false, reply_markup)
-    end
-    
-if data.message.content.luatele == "messageChatJoinByLink" then
-if not redis:get(bot_id..":"..data.message.chat_id..":settings:Welcome") then
-local UserInfo = bot.getUser(data.message.sender_id.user_id)
-local tex = redis:get(bot_id..":"..data.message.chat_id..":Welcome")
-if UserInfo.username and UserInfo.username ~= "" then
-User = "[@"..UserInfo.username.."]"
-Usertag = '['..UserInfo.first_name..'](t.me/'..UserInfo.username..')'
-else
-User = "لا يوجد"
-Usertag = '['..UserInfo.first_name..'](tg://user?id='..data.message.sender_id.user_id..')'
-end
-if tex then 
-tex = tex:gsub('name',UserInfo.first_name) 
-tex = tex:gsub('user',User) 
-bot.sendText(data.message.chat_id,data.message.id,tex,"md")  
-else
-bot.sendText(data.message.chat_id,data.message.id,"يآهلا وسهلآ بصديقنا الغآلي ❥\nالله يحييك نوّرت مجموعهنا 🖤\nٴ▫️ "..Usertag.."\nالرجاء الالتزام بالقوانين 🖤\nـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n🔺 للأستفسار تواصل مع المالك\n-","md",true)
-end
-end
-end
-
 if data.message.content.luatele == "messageChatAddMembers" and redis:get(bot_id..":infobot") then 
 if data.message.content.member_user_ids[1] == tonumber(bot_id) then 
 local photo = bot.getUserProfilePhotos(bot_id)
 kup = bot.replyMarkup{
 type = 'inline',data = {
-{{text ="- اضفني لمجموعتك -",url="https://t.me/"..bot.getMe().username.."?startgroup=new"}},
+{{text ="◈╎اضفني الى مجموعتك",url="https://t.me/"..bot.getMe().username.."?startgroup=new"}},
 }
 }
 if photo.total_count > 0 then
-bot.sendPhoto(data.message.chat_id, data.message.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,"*- انا بوت اسمي براند\n- اختصاصي حماية المجموعهات وادارتها\n- يوتيوب، تشغيل الاغاني في المكالمه ، العاب، كت تويت، والعديد من الميزات اكتشفها بنفسك\n- والأفضل من هذا ان البوت مبرمج على النسخة الجديدة 64 بت خالٍ من المشاكل .\n- عشان تفعلني ارفعني مشرف بس *", 'md', nil, nil, nil, nil, nil, nil, nil, nil, nil, kup)
+bot.sendPhoto(data.message.chat_id, data.message.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,"*◈ ╎ اهلا بك في بوت الحمايه\n◈ ╎ وضيفتي حمايه المجموعات من السبام والتفليش والخ..\n◈ ╎ لتفعيل البوت ارسل كلمه *تفعيل", 'md', nil, nil, nil, nil, nil, nil, nil, nil, nil, kup)
 else
-bot.sendText(data.message.chat_id,data.message.id,"*- انا بوت اسمي براند\n- اختصاصي حماية المجموعهات وادارتها\n- يوتيوب، تشغيل الاغاني في المكالمه ، العاب، كت تويت، والعديد من الميزات اكتشفها بنفسك\n- والأفضل من هذا ان البوت مبرمج على النسخة الجديدة 64 بت خالٍ من المشاكل .\n- عشان تفعلني ارفعني مشرف بس *","md",true, false, false, false, kup)
+bot.sendText(data.message.chat_id,data.message.id,"*◈ ╎ اهلا بك في بوت الحمايه \n◈ ╎ وضيفتي حمايه المجموعات من السبام والتفليش والخ..\n◈ ╎ لتفعيل البوت ارسل كلمه *تفعيل","md",true, false, false, false, kup)
 end
 end
 end
 end
 elseif data and data.luatele and data.luatele == "updateMessageEdited" then
 local msg = bot.getMessage(data.chat_id, data.message_id)
-if tonumber(msg.sender_id.user_id) ~= tonumber(bot_id) then  
-if redis:sismember(bot_id..":bot:silent", msg.sender_id.user_id) then    
+if tonumber(msg.sender.user_id) ~= tonumber(bot_id) then  
+if redis:sismember(bot_id..":bot:silent", msg.sender.user_id) then    
 bot.deleteMessages(msg.chat_id,{[1]= msg.id})
 end  
-if redis:sismember(bot_id..":"..msg.chat_id..":silent", msg.sender_id.user_id) then    
+if redis:sismember(bot_id..":"..msg.chat_id..":silent", msg.sender.user_id) then    
 bot.deleteMessages(msg.chat_id,{[1]= msg.id})  
 end
-if redis:sismember(bot_id..":"..msg.chat_id..":Ban", msg.sender_id.user_id) then    
+if redis:sismember(bot_id..":"..msg.chat_id..":Ban", msg.sender.user_id) then    
 if GetInfoBot(msg).BanUser then
-bot.setChatMemberStatus(msg.chat_id,msg.sender_id.user_id,'banned',0)
+bot.setChatMemberStatus(msg.chat_id,msg.sender.user_id,'banned',0)
 bot.deleteMessages(msg.chat_id,{[1]= msg.id})
 elseif GetInfoBot(msg).BanUser == false then
 bot.deleteMessages(msg.chat_id,{[1]= msg.id})
 end
 end  
-if redis:sismember(bot_id..":"..msg.chat_id..":restrict", msg.sender_id.user_id) then    
-bot.setChatMemberStatus(msg.chat_id,msg.sender_id.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
+if redis:sismember(bot_id..":"..msg.chat_id..":restrict", msg.sender.user_id) then    
+bot.setChatMemberStatus(msg.chat_id,msg.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
 end  
 if not Administrator(msg) then
 if msg.content.text then
@@ -22700,10 +22665,11 @@ ut = "ممنوعه"
 end
 if hash then    
 bot.deleteMessages(msg.chat_id,{[1]= msg.id})
-bot.sendText(msg.chat_id,msg.id,Reply_Status(msg.sender_id.user_id,"*- "..tu.." "..ut.." من المجموعه*").yu,"md",true)  
+bot.sendText(msg.chat_id,msg.id,Reply_Status(msg.sender.user_id,"*◈ ╎ "..tu.." "..ut.." من المجموعه*").yu,"md",true)  
 end
 end
-redis:incr(bot_id..":"..msg.chat_id..":"..msg.sender_id.user_id..":Editmessage") 
+Run(msg,data)
+redis:incr(bot_id..":"..msg.chat_id..":"..msg.sender.user_id..":Editmessage") 
 ----------------------------------------------------------------------------------------------------
 if not BasicConstructor(msg) then
 if msg.content.luatele == "messageContact" or msg.content.luatele == "messageVideoNote" or msg.content.luatele == "messageDocument" or msg.content.luatele == "messageAudio" or msg.content.luatele == "messageVideo" or msg.content.luatele == "messageVoiceNote" or msg.content.luatele == "messageAnimation" or msg.content.luatele == "messagePhoto" then
