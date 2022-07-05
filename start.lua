@@ -6116,7 +6116,7 @@ if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ براند ماعندها حساب بالبنك 🤣*","md",true)
 return false
 end
-if Remsg.chat_id,msg.id == msg.chat_id,msg.id then
+if Remsg.chat_id,msg.id == msg.sender_id.user_id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ بدك تزرف نفسك 🤡*","md",true)  
 return false
 end
@@ -6203,7 +6203,7 @@ local hours = redis:ttl(bot_id.."timehrame" .. hrameid)
 local msrokid = redis:get(bot_id.."msrokid"..msg.chat_id..msg.chat_id,msg.id)
 local hrameid = redis:get(bot_id.."hrameid"..msg.chat_id..msg.chat_id,msg.id)
 local balcmsrok = redis:get(bot_id.."balcmsrok"..msg.chat_id..msg.chat_id,msg.id) or 0
-if tonumber(hrameid) == UserId_Info.id and tonumber(msrokid) == msg.chat_id,msg.id then
+if tonumber(hrameid) == UserId_Info.id and tonumber(msrokid) == msg.sender_id.user_id then
 local ballancehrame = redis:get(bot_id.."boob"..hrameid) or 0
 local ballancmsrok = redis:get(bot_id.."boob"..msrokid) or 0
 ballancehramenow = tonumber(ballancehrame) - tonumber(balcmsrok)
@@ -6249,7 +6249,7 @@ local hours = redis:ttl(bot_id.."timehrame" .. hrameid)
 local msrokid = redis:get(bot_id.."msrokid"..msg.chat_id..msg.chat_id,msg.id)
 local hrameid = redis:get(bot_id.."hrameid"..msg.chat_id..msg.chat_id,msg.id)
 local balcmsrok = redis:get(bot_id.."balcmsrok"..msg.chat_id..msg.chat_id,msg.id) or 0
-if tonumber(hrameid) == Remsg.chat_id,msg.id and tonumber(msrokid) == msg.chat_id,msg.id then
+if tonumber(hrameid) == Remsg.chat_id,msg.id and tonumber(msrokid) == msg.sender_id.user_id then
 local ballancehrame = redis:get(bot_id.."boob"..hrameid) or 0
 local ballancmsrok = redis:get(bot_id.."boob"..msrokid) or 0
 ballancehramenow = tonumber(ballancehrame) - tonumber(balcmsrok)
@@ -6799,7 +6799,7 @@ if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ براند ماعندها حساب بالبنك 🤣*","md",true)  
 return false
 end
-if Remsg.chat_id,msg.id == msg.chat_id,msg.id then
+if Remsg.chat_id,msg.id == msg.sender_id.user_id then
 bot.sendText(msg.chat_id,msg.id,"\n*⇜ تهاجم نفسك 🤡*","md",true)  
 return false
 end
@@ -9172,7 +9172,7 @@ if text == 'طلاق' then
 if redis:sismember(bot_id.."roogg1",msg.chat_id,msg.id) or redis:sismember(bot_id.."roogga1",msg.chat_id,msg.id) then
 local zoog = redis:get(bot_id.."roog1"..msg.chat_id,msg.id)
 local zooga = tonumber(redis:get(bot_id.."rooga1"..msg.chat_id,msg.id))
-if tonumber(zoog) == msg.chat_id,msg.id then
+if tonumber(zoog) == msg.sender_id.user_id then
 local bandd = bot.getUser(zoog)
 if bandd.first_name then
 neews = "["..bandd.first_name.."](tg://user?id="..bandd.id..")"
@@ -9209,7 +9209,7 @@ if text == 'خلع' then
 if redis:sismember(bot_id.."roogg1",msg.chat_id,msg.id) or redis:sismember(bot_id.."roogga1",msg.chat_id,msg.id) then
 local zoog = redis:get(bot_id.."roog1"..msg.chat_id,msg.id)
 local zooga = redis:get(bot_id.."rooga1"..msg.chat_id,msg.id)
-if tonumber(zooga) == msg.chat_id,msg.id then
+if tonumber(zooga) == msg.sender_id.user_id then
 local mahrr = redis:get(bot_id.."rahrr1"..msg.chat_id,msg.id)
 local bandd = bot.getUser(zoog)
 if bandd.first_name then
