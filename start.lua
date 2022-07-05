@@ -22516,14 +22516,14 @@ end
 end
 end
 end
-if redis:sismember(bot_id..":bot:Ban", data.message.sender_id.user_id) then    
+if redis:sismember(bot_id..":bot:Ban", data.message.sender.user_id) then    
 if GetInfoBot(data.message).BanUser then
-bot.setChatMemberStatus(data.message.chat_id,data.message.sender_id.user_id,'banned',0)
+bot.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'banned',0)
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 elseif GetInfoBot(data.message).BanUser == false then
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 end
-end  
+end 
 if redis:sismember(bot_id..":bot:silent", data.message.sender_id.user_id) then    
 bot.deleteMessages(data.message.chat_id,{[1]= data.message.id})
 end  
