@@ -4904,7 +4904,7 @@ return false
 end
 if text == 'انشاء حساب بنكي' or text == 'انشاء حساب البنكي' or text =='انشاء الحساب بنكي' or text =='انشاء الحساب البنكي' or text == "انشاء حساب" or text == "فتح حساب بنكي" then
 cobnum = tonumber(redis:get(bot_id.."bandid"..msg.chat_id,msg.id))
-if cobnum == msg.chat_id,msg.id then
+if cobnum == msg.sender_id.user_id then
 return bot.sendText(msg.chat_id,msg.id, "⇜ حسابك محظور من لعبة البنك","md",true)
 end
 if redis:sismember(bot_id.."booob",msg.chat_id,msg.id) then
