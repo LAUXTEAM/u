@@ -22576,12 +22576,14 @@ data.message.content.text.text = (NewCmd or data.message.content.text.text)
 end
 end
 ---------‐-------------
+if data.message.sender.luatele ~= "messageSenderChat" then
+if tonumber(data.message.sender.user_id) ~= tonumber(bot_id) then  
 if data.message.content.text and data.message.content.text.text:match("^(.*)$") then
-if redis:get(bot_id..":"..data.message.chat_id..":"..data.message.sender_id.user_id..":Commandd:dell") == "true" then
-redis:del(bot_id..":"..data.message.chat_id..":"..data.message.sender_id.user_id..":Commandd:dell")
-if redis:get(bot_id..":Commandd:"..data.message.content.text.text) then
-redis:del(bot_id..":Commandd:"..data.message.content.text.text)
-redis:srem(bot_id.."Listt:Commandd",data.message.content.text.text)
+if redis:get(bot_id..":"..data.message.chat_id..":"..data.message.sender.user_id..":Command:del") == "true" then
+redis:del(bot_id..":"..data.message.chat_id..":"..data.message.sender.user_id..":Command:del")
+if redis:get(bot_id..":"..data.message.chat_id..":Command:"..data.message.content.text.text) then
+redis:del(bot_id..":"..data.message.chat_id..":Command:"..data.message.content.text.text)
+redis:srem(bot_id.."List:Command:"..data.message.chat_id,data.message.content.text.text)
 t = "- تم مسح الامر "
 else
 t = " - عذراً الامر  ( "..data.message.content.text.text.." ) غير موجود "
