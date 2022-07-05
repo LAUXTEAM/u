@@ -22432,6 +22432,7 @@ end
 end
 ----------------------------------------------------------------------------------------------------
 end --- end Run
+end --- end 100
 end --- end Run
 ----------------------------------------------------------------------------------------------------
 function Call(data)
@@ -22589,14 +22590,12 @@ end
 bot.sendText(data.message.chat_id,data.message.id,"*"..t.."*","md",true)  
 end
 end
-
 if data.message.content.text then
 local NewCmdd = redis:get(bot_id..":Commandd:"..data.message.content.text.text)
 if NewCmdd then
 data.message.content.text.text = (NewCmdd or data.message.content.text.text)
 end
 end
-
 -------------------------------
 if data.message.content.text then
 td = data.message.content.text.text
